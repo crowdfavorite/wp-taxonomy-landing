@@ -1,5 +1,9 @@
 # Taxonomy Landing changelog
 
+## 1.0.1
+
+- Remove extraneous debugging output.
+
 ## 1.0
 
 - Initial release.

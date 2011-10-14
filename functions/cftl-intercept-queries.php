@@ -23,7 +23,6 @@ function cftl_intercept_get_posts(&$query_obj) {
 	remove_action('pre_get_posts', 'cftl_intercept_get_posts');
 	if ($query_obj->is_tax || $query_obj->is_tag || $query_obj->is_category) {
 		$qv = $query_obj->query_vars;
-		print_r($qv);
 		if (!(isset($qv['paged']) && (int) $qv['paged'] < 1)) {
 			// Only handle the landing page, not an explicit call to page 1
 			return;
