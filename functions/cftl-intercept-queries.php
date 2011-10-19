@@ -20,6 +20,9 @@ if (__FILE__ == $_SERVER['SCRIPT_FILENAME']) { die(); }
 
 function cftl_intercept_get_posts(&$query_obj) {
 	global $cftl_previous;
+	if (!$query_obj->is_main_query()) {
+		return;
+	}
 	remove_action('pre_get_posts', 'cftl_intercept_get_posts');
 	if ($query_obj->is_tax || $query_obj->is_tag || $query_obj->is_category) {
 		$qv = $query_obj->query_vars;
