@@ -1,5 +1,9 @@
 # Taxonomy Landing changelog
 
+## 1.0.2
+
+- Use WP3.3 is_main_query() to ensure the override happens correctly.
+
 ## 1.0.1
 
 - Remove extraneous debugging output.
