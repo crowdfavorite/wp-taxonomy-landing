@@ -1,9 +1,9 @@
 === Plugin Name ===
 Contributors: crowdfavorite
 Tags: templates, custom post types, taxonomies
-Requires at least: 3.2
+Requires at least: 3.3
 Tested up to: 3.3
-Stable tag: 1.0
+Stable tag: 1.0.2
 
 Taxonomy Landing allows overriding the landing page of a taxonomy archive with a custom template.
 
