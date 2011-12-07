@@ -41,9 +41,10 @@ function cftl_register_taxonomy_landing() {
 		'supports' => array(
 			'title',
 			'editor',
-			'page-attributes'
+			'page-attributes',
+			'thumbnail',
 		),
-		'public' => false,
+		'public' => true,
 		'exclude_from_search' => true,
 		'show_in_nav_menus' => false,
 		'show_ui' => true,
@@ -221,4 +222,26 @@ function cftl_tax_landing_save_extras($post_id) {
 	}
 }
 
+
 add_action('save_post', 'cftl_tax_landing_save_extras');
+
+function cftl_post_type_link($post_link, $post) {
+	$tax = get_object_taxonomies($post, 'object');
+	$term = null;
+	foreach ($tax as $label => $tax_obj) {
+		$terms = get_object_term_cache($post->ID, $label);
+		if (!empty($terms)) {
+			$term = array_shift($terms);
+			break;
+		}
+	}
+	if (!empty($term)) {
+		return get_term_link($term);
+	}
+	
+	return $post_link;
+
+}
+
+add_filter('post_type_link', 'cftl_post_type_link', 10, 2);
+
