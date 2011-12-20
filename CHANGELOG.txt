@@ -1,5 +1,9 @@
 # Taxonomy Landing changelog
 
+## 1.0.3
+
+- Fix issue with explicit page 1 requests when using permalinks enabled
+
 ## 1.0.2
 
 - Use WP3.3 is_main_query() to ensure the override happens correctly.
