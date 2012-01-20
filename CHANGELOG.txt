@@ -1,5 +1,8 @@
 # Taxonomy Landing changelog
 
+## 1.0.4
+- Fix logic issue with explicit page 1 requests
+
 ## 1.0.3
 
 - Fix issue with explicit page 1 requests when using permalinks enabled
