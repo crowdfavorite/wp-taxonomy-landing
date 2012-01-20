@@ -53,7 +53,7 @@ function cftl_intercept_get_posts(&$query_obj) {
 			$landing = cftl_find_override_page($query_obj);
 		}
 
-		if (!(isset($qv['paged']) && (int) $qv['paged'] < 1)) {
+		if (!isset($qv['paged']) || (int) $qv['paged'] >= 1) {
 			// Only handle the landing page, not an explicit call to page 1
 			if ($landing) {
 				add_filter('redirect_canonical', 'cftl_maintain_paged');
