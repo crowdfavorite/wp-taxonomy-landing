@@ -226,6 +226,9 @@ function cftl_tax_landing_save_extras($post_id) {
 add_action('save_post', 'cftl_tax_landing_save_extras');
 
 function cftl_post_type_link($post_link, $post) {
+	if ($post->post_type != "cftl-tax-landing") {
+		return $post_link;
+	}
 	$tax = get_object_taxonomies($post, 'object');
 	$term = null;
 	foreach ($tax as $label => $tax_obj) {
