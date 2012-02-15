@@ -25,6 +25,13 @@ function cftl_find_override_page(&$query_obj) {
 		'numberposts' => 1,
 		'tax_query' => $query_obj->tax_query->queries
 	);
+	if (is_array($override_query['tax_query'])) {
+		foreach (array_keys($override_query['tax_query']) as $key) {
+			if (is_array($override_query['tax_query'][$key])) {
+				$override_query['tax_query'][$key]['include_children'] = false;
+			}
+		}
+	}
 	$landings = get_posts($override_query);
 	if (!is_array($landings) || empty($landings)) {
 		return false;

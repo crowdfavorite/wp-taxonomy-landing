@@ -1,5 +1,10 @@
 # Taxonomy Landing changelog
 
+## 1.0.6
+
+- Fix issue where a parent taxonomy applied to a taxonomy landing page could
+fail when there were child taxonomy landing pages
+
 ## 1.0.5
 
 - Fix issue where all permalinks were getting rewritten, not just taxonomy landing permalinks
