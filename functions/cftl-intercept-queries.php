@@ -50,7 +50,7 @@ function cftl_intercept_get_posts(&$query_obj) {
 		return;
 	}
 	remove_action('pre_get_posts', 'cftl_intercept_get_posts');
-	if ($query_obj->is_tax || $query_obj->is_tag || $query_obj->is_category) {
+	if (!$query_obj->is_feed && ($query_obj->is_tax || $query_obj->is_tag || $query_obj->is_category)) {
 		$landing = false;
 		$qv = $query_obj->query_vars;
 		$a = is_object($wp_rewrite);
