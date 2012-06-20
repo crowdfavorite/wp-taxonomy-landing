@@ -1,5 +1,9 @@
 # Taxonomy Landing changelog
 
+## 1.0.7
+
+- Fix issue where landing pages were intercepting feed requests
+
 ## 1.0.6
 
 - Fix issue where a parent taxonomy applied to a taxonomy landing page could
