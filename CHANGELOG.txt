@@ -1,5 +1,9 @@
 # Taxonomy Landing changelog
 
+## 1.0.7.1
+
+- Addition of clarifying comments surrounding archive intercepts.
+
 ## 1.0.7
 
 - Fix issue where landing pages were intercepting feed requests
