@@ -1,5 +1,9 @@
 # Taxonomy Landing changelog
 
+## 1.0.8
+
+- Fix issue where taxonomy landing pages were being filtered in wp-admin post listing if taxonomy was being used to filter admin post listing.
+
 ## 1.0.7.1
 
 - Addition of clarifying comments surrounding archive intercepts.
