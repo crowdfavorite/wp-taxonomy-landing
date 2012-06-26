@@ -100,7 +100,9 @@ function cftl_abort_redirect_canonical($redirect_url) {
 	return false;
 }
 
-add_action('pre_get_posts', 'cftl_intercept_get_posts');
+if (!is_admin()) {
+	add_action('pre_get_posts', 'cftl_intercept_get_posts');
+}
 
 function cftl_unparse_url($parsed_url) {
 	$scheme = isset($parsed_url['scheme']) ? $parsed_url['scheme'] . '://' : '';
