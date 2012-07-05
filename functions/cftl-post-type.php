@@ -50,10 +50,33 @@ function cftl_register_taxonomy_landing() {
 		'show_ui' => true,
 		'show_in_menu' => true,
 		'hierarchical' => true,
-
 	));
 }
+
 add_action('init', 'cftl_register_taxonomy_landing');
+
+/**
+ * Remove Permalink display / edit controls
+ */
+function cfct_get_sample_permalink_html($return, $id, $new_title, $new_slug) {
+	$post = get_post($id);
+	if (!empty($post) && $post->post_type == 'cftl-tax-landing') {
+		return '';
+	}
+	return $return;
+}
+
+add_filter('get_sample_permalink_html', 'cfct_get_sample_permalink_html', 10, 4);
+
+/**
+ * Remove Categories and Tags submenu items
+ */
+function cftl_remove_submenu_items() {
+	remove_submenu_page('edit.php?post_type=cftl-tax-landing', 'edit-tags.php?taxonomy=category&amp;post_type=cftl-tax-landing');
+	remove_submenu_page('edit.php?post_type=cftl-tax-landing', 'edit-tags.php?taxonomy=post_tag&amp;post_type=cftl-tax-landing');
+}
+
+add_action('admin_menu', 'cftl_remove_submenu_items');
 
 function cftl_register_taxonomies_to_tax_landing() {
 	global $wp_taxonomies;
