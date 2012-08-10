@@ -129,14 +129,51 @@ function cftl_maintain_paged($redirect_url) {
 	return $redirect_url;
 }
 
+// As of WP3.4, _wp_page_template is _forced_ to only be for pages.  Override
+// that behavior for landing pages (which aren't quite pages)
+// Modified from get_page_template in wp-includes/template.php
+function cftl_get_page_template($template, $default_template = null) {
+	$id = get_queried_object_id();
+	$slug_template = get_page_template_slug();
+	$pagename = get_query_var('pagename');
+
+	if (!$pagename && $id) {
+		// If a static page is set as the front page, $pagename will not be set. Retrieve it from the queried object
+		$post = get_queried_object();
+		$pagename = $post->post_name;
+	}
+
+	$templates = array();
+	if ($slug_template && 0 === validate_file($slug_template)) {
+		$templates[] = $template;
+	}
+	if ($pagename) {
+		$templates[] = "page-$pagename.php";
+	}
+	if ($id) {
+		$templates[] = "page-$id.php";
+	}
+	if ($template && 0 === validate_file($template)) {
+		$templates[] = $template;
+	}
+	if (!in_array('page.php', $templates)) {
+		$templates[] = 'page.php';
+	}
+	if (!empty($default_template)) {
+		$templates[] = basename($default_template);
+	}
+
+	return get_query_template('page', $templates);
+}
+
 function cftl_intercept_template_loader($template) {
 	global $post;
 	if (isset($post) && is_object($post) && 'cftl-tax-landing' == $post->post_type) {
-		$post_template = get_post_meta($post->ID, '_wp_page_template');
+		$post_template = get_post_meta($post->ID, '_wp_page_template', true);
 		if (empty($post_template)) {
 			return $template;
 		}
-		$template = get_page_template();
+		$template = cftl_get_page_template($post_template, $template);
 		remove_filter('template_include', 'cftl_intercept_template_loader');
 		$template = apply_filters( 'template_include', $template);
 		add_filter('template_include', 'cftl_intercept_template_loader');
