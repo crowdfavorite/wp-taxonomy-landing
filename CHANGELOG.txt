@@ -1,5 +1,10 @@
 # Taxonomy Landing changelog
 
+## 1.1
+
+- Supports and requires WP3.4
+- Fix for using theme Page Templates on Taxonomy Landing Pages in WP3.4
+
 ## 1.0.8
 
 - Fix issue where taxonomy landing pages were being filtered in wp-admin post listing if taxonomy was being used to filter admin post listing.
