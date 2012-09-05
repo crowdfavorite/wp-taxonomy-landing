@@ -12,7 +12,7 @@
  * **********************************************************************
  * This program is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * **********************************************************************
  */
 
@@ -80,7 +80,7 @@ function cftl_intercept_get_posts(&$query_obj) {
 		if (!$landing) {
 			return;
 		}
-		
+
 		$cftl_previous['query'] = $query_obj->query;
 		$cftl_previous['query_vars'] = $query_obj->query_vars;
 		$cftl_previous['queried_object'] = $query_obj->get_queried_object();
