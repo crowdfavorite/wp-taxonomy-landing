@@ -1,5 +1,11 @@
 # Taxonomy Landing changelog
 
+## 1.1.1
+
+- Remove all superfluous taxonomy links from the Taxonomy Landing Page admin sidebar
+- Provide the links to the currently selected Taxonomy Landing Page taxonomies
+in a meta box
+
 ## 1.1
 
 - Supports and requires WP3.4
