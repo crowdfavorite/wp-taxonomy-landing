@@ -6,7 +6,7 @@
  * This file is part of Taxonomy Landing for WordPress
  * https://github.com/crowdfavorite/wp-taxonomy-landing
  *
- * Copyright (c) 2009-2011 Crowd Favorite, Ltd. All rights reserved.
+ * Copyright (c) 2009-2012 Crowd Favorite, Ltd. All rights reserved.
  * http://crowdfavorite.com
  *
  * **********************************************************************

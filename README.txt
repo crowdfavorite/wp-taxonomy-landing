@@ -3,7 +3,7 @@ Contributors: crowdfavorite
 Tags: templates, custom post types, taxonomies
 Requires at least: 3.4
 Tested up to: 3.4.1
-Stable tag: 1.1
+Stable tag: 1.1.1
 
 Taxonomy Landing allows overriding the landing page of a taxonomy archive with a custom template.
 
