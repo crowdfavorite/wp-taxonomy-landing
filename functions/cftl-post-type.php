@@ -72,8 +72,10 @@ add_filter('get_sample_permalink_html', 'cfct_get_sample_permalink_html', 10, 4)
  * Remove Categories and Tags submenu items
  */
 function cftl_remove_submenu_items() {
-	remove_submenu_page('edit.php?post_type=cftl-tax-landing', 'edit-tags.php?taxonomy=category&amp;post_type=cftl-tax-landing');
-	remove_submenu_page('edit.php?post_type=cftl-tax-landing', 'edit-tags.php?taxonomy=post_tag&amp;post_type=cftl-tax-landing');
+	global $wp_taxonomies;
+	foreach ($wp_taxonomies as $tax) {
+		remove_submenu_page('edit.php?post_type=cftl-tax-landing', 'edit-tags.php?taxonomy=' . $tax->name . '&amp;post_type=cftl-tax-landing');
+	}
 }
 
 add_action('admin_menu', 'cftl_remove_submenu_items');
@@ -191,10 +193,11 @@ function cftl_tax_landing_add_extras_box() {
 	if (0 != count(get_page_templates())) {
 		add_meta_box(
 			'cftl_tax_landing_extras',
-			__('Landing Page extras', 'cf-tax-landing'),
+			__('Landing Page Details', 'cf-tax-landing'),
 			'cftl_tax_landing_extras_box',
 			'cftl-tax-landing',
-			'side'
+			'side',
+			'high'
 		);
 	}
 }
@@ -203,6 +206,15 @@ add_action('add_meta_boxes', 'cftl_tax_landing_add_extras_box');
 
 function cftl_tax_landing_extras_box($post) {
 	wp_nonce_field(plugin_basename(__FILE__), 'cftl_tax_landing_extras_nonce');
+
+	$taxonomy_array = get_the_taxonomies($post);
+	if (!empty($taxonomy_array)) {
+		$taxonomy_links = implode('<br/>', $taxonomy_array);
+	} 
+	else {
+		$taxonomy_links = __("No taxonomies specified.", 'cf-tax-landing');
+	}
+	
 	$page_template = get_post_meta($post->ID, '_wp_page_template', true);
 	?>
 <div class="form-field">
@@ -212,6 +224,10 @@ function cftl_tax_landing_extras_box($post) {
 		<option value="default"<?php echo ("default" == $page_template) ? ' selected="selected"' : ''?>><?php _e('Default (Page) Template', 'cf-tax-landing'); ?></option>
 		<?php page_template_dropdown($page_template); ?>
 	</select>
+</div>
+<div class="form-field">
+	<label><?php _e('Current taxonomy links:', 'cf-tax-landing') ?></label><br/>
+	<?php echo $taxonomy_links; ?>
 </div>
 <?php
 }
