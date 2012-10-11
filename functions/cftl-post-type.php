@@ -43,6 +43,7 @@ function cftl_register_taxonomy_landing() {
 			'editor',
 			'page-attributes',
 			'thumbnail',
+			'revisions',
 		),
 		'public' => false,
 		'exclude_from_search' => true,

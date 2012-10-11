@@ -1,5 +1,9 @@
 # Taxonomy Landing changelog
 
+## develop
+
+- Support revisions on Taxonomy Landing Pages
+
 ## 1.1.1
 
 - Remove all superfluous taxonomy links from the Taxonomy Landing Page admin sidebar
