@@ -1,6 +1,6 @@
 # Taxonomy Landing changelog
 
-## develop
+## 1.1.2
 
 - Support revisions on Taxonomy Landing Pages
 
