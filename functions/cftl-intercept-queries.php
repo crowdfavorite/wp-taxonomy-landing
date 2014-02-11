@@ -31,10 +31,10 @@ function cftl_find_override_page(&$query_obj) {
 				}
 			}
 		}
+
 		if (isset($query_obj->tax_query->relation)) {
 			$tax_query_override['relation'] = $query_obj->tax_query->relation;
 		}
-
 	}
 	$override_query = array(
 		'post_type' => 'cftl-tax-landing',
