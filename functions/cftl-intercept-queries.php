@@ -19,11 +19,20 @@
 if (__FILE__ == $_SERVER['SCRIPT_FILENAME']) { die(); }
 
 function cftl_find_override_page(&$query_obj) {
+	$tax_query_override = array();
+	if (isset($query_obj->tax_query) && is_object($query_obj->tax_query)) {
+		if (isset($query_obj->tax_query->queries)) {
+			$tax_query_override = $query_obj->tax_query->queries;
+		}
+		if (isset($query_obj->tax_query->relation)) {
+			$tax_query_override['relation'] = $query_obj->tax_query->relation;
+		}
+	}
 	$override_query = array(
 		'post_type' => 'cftl-tax-landing',
 		'post_status' => 'publish',
 		'numberposts' => 1,
-		'tax_query' => $query_obj->tax_query->queries
+		'tax_query' => $tax_query_override,
 	);
 	if (is_array($override_query['tax_query'])) {
 		foreach (array_keys($override_query['tax_query']) as $key) {
