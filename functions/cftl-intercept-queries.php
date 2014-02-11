@@ -23,10 +23,18 @@ function cftl_find_override_page(&$query_obj) {
 	if (isset($query_obj->tax_query) && is_object($query_obj->tax_query)) {
 		if (isset($query_obj->tax_query->queries)) {
 			$tax_query_override = $query_obj->tax_query->queries;
+
+			// turn off inclusion of children for possible landing page matches
+			foreach (array_keys($tax_query_override) as $key) {
+				if (is_array($tax_query_override[$key])) {
+					$tax_query_override[$key]['include_children'] = false;
+				}
+			}
 		}
 		if (isset($query_obj->tax_query->relation)) {
 			$tax_query_override['relation'] = $query_obj->tax_query->relation;
 		}
+
 	}
 	$override_query = array(
 		'post_type' => 'cftl-tax-landing',
@@ -34,13 +42,7 @@ function cftl_find_override_page(&$query_obj) {
 		'posts_per_page' => 1,
 		'tax_query' => $tax_query_override,
 	);
-	if (is_array($override_query['tax_query'])) {
-		foreach (array_keys($override_query['tax_query']) as $key) {
-			if (is_array($override_query['tax_query'][$key])) {
-				$override_query['tax_query'][$key]['include_children'] = false;
-			}
-		}
-	}
+
 	$landings = get_posts($override_query);
 	if (!is_array($landings) || empty($landings)) {
 		return false;
