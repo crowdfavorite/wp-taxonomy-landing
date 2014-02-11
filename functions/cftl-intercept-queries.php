@@ -31,7 +31,7 @@ function cftl_find_override_page(&$query_obj) {
 	$override_query = array(
 		'post_type' => 'cftl-tax-landing',
 		'post_status' => 'publish',
-		'numberposts' => 1,
+		'posts_per_page' => 1,
 		'tax_query' => $tax_query_override,
 	);
 	if (is_array($override_query['tax_query'])) {
