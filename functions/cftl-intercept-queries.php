@@ -66,7 +66,7 @@ function cftl_intercept_get_posts(&$query_obj) {
 	 * NOTE: We need the explicit is_tax, is_tag, is_category checks below as
 	 * is_tax is not set on tag or category queries. (as of WP 3.4)
 	 */
-	if (!$query_obj->is_feed && ($query_obj->is_tax || $query_obj->is_tag || $query_obj->is_category)) {
+	if (!$query_obj->is_feed && !$query_obj->is_singular() && ($query_obj->is_tax || $query_obj->is_tag || $query_obj->is_category)) {
 		$landing = false;
 		$qv = $query_obj->query_vars;
 		$a = is_object($wp_rewrite);
